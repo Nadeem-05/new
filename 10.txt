@@ -1,0 +1,51 @@
+index.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Celsius to Fahrenheit Converter</title>
+</head>
+<body>
+    <h1>Celsius to Fahrenheit Converter</h1>
+    <label for="celsius">Enter temperature in Celsius:</label>
+    <input type="text" id="celsius" placeholder="Enter a temperature">
+    <button onclick="convertAndDisplay()">Convert</button>
+    <p id="result"></p>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+main.js:
+
+function convertCelsiusToFahrenheit(celsius) {
+    if (isNaN(celsius)) {
+        return null;
+    }
+
+    const fahrenheit = (celsius * 9/5) + 32;
+    return fahrenheit;
+}
+
+function convertAndDisplay() {
+    const inputCelsius = document.getElementById("celsius").value;
+
+    const resultDisplay = document.getElementById("result");
+    resultDisplay.innerHTML = '';
+
+    const celsius = parseFloat(inputCelsius);
+
+    if (isNaN(celsius)) {
+        resultDisplay.innerHTML = "Please enter a valid number for the temperature.";
+    } else {
+        const fahrenheit = convertCelsiusToFahrenheit(celsius);
+        if (fahrenheit === null) {
+            resultDisplay.innerHTML = "Conversion failed. Please enter a valid number for the temperature.";
+        } else {
+            resultDisplay.innerHTML = `Temperature in Fahrenheit: ${fahrenheit.toFixed(2)}°F`;
+        }
+    }
+}

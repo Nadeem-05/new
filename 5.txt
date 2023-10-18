@@ -1,0 +1,59 @@
+index.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XML File Upload and Validation</title>
+</head>
+<body>
+    <h1>XML File Upload and Validation</h1>
+    <input type="file" id="fileInput" accept=".xml" />
+    <button onclick="handleUpload()">Upload & Validate</button>
+    <div id="validationResult"></div>
+    <div id="xmlContent"></div>
+</body>
+<script src="main.js"></script>
+</html>
+
+
+
+main.js:
+
+function handleUpload() {
+    const fileInput = document.getElementById("fileInput");
+    const validationResult = document.getElementById("validationResult");
+    const xmlContent = document.getElementById("xmlContent");
+
+    // Reset previous results
+    validationResult.innerHTML = "";
+    xmlContent.innerHTML = "";
+
+    // Check if a file is selected
+    if (fileInput.files.length === 0) {
+        validationResult.innerText = "Please select an XML file.";
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const xmlString = e.target.result;
+
+        // Parse the XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+        // Check for XML parsing errors
+        if (xmlDoc.getElementsByTagName("parsererror").length > 0) {
+            validationResult.innerText = "XML is not valid. Parsing error occurred.";
+        } else {
+            validationResult.innerText = "XML is valid.";
+
+            // Display XML content
+            xmlContent.innerText = xmlString;
+        }
+    };
+
+    reader.readAsText(file);
+}

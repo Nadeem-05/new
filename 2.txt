@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aviationData xmlns="http://www.example.com/aviation">
+    <aircraft>
+        <registrationNumber>ABC123</registrationNumber>
+        <manufacturer>Boeing</manufacturer>
+        <model>737-800</model>
+        <yearManufactured>2015</yearManufactured>
+        <maxTakeoffWeight>174,200 lbs</maxTakeoffWeight>
+        <seatingCapacity>
+            <passenger>189</passenger>
+            <crew>2</crew>
+        </seatingCapacity>
+        <engines>
+            <engine>
+                <type>Jet</type>
+                <manufacturer>CFM International</manufacturer>
+                <model>CFM56-7B</model>
+                <thrust>27,300 lbf</thrust>
+            </engine>
+        </engines>
+    </aircraft>
+
+    <aircraft>
+        <!-- Another aircraft entry -->
+    </aircraft>
+
+    <!-- More aircraft entries -->
+</aviationData>
+
+
+OR
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<agricultureData xmlns="http://www.example.com/agriculture">
+    <farm>
+        <name>Green Acres Farm</name>
+        <location>
+            <latitude>40.7128</latitude>
+            <longitude>-74.0060</longitude>
+        </location>
+        <crops>
+            <crop>
+                <name>Corn</name>
+                <variety>Yellow Dent</variety>
+                <plantingDate>2023-04-15</plantingDate>
+                <harvestDate>2023-09-30</harvestDate>
+                <area>100 acres</area>
+            </crop>
+            <crop>
+                <!-- Another crop entry -->
+            </crop>
+        </crops>
+        <livestock>
+            <animal>
+                <species>Cattle</species>
+                <breed>Angus</breed>
+                <quantity>150</quantity>
+            </animal>
+            <animal>
+                <!-- Another livestock entry -->
+            </animal>
+        </livestock>
+    </farm>
+
+    <farm>
+        <!-- Another farm entry -->
+    </farm>
+
+    <!-- More farm entries -->
+</agricultureData>

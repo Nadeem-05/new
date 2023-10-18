@@ -1,0 +1,58 @@
+index.html:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Priority Filter</title>
+</head>
+<body>
+    <h1>Task Priority Filter</h1>
+    <p>Threshold Priority: <input type="number" id="threshold" placeholder="Enter a threshold"></p>
+    <button onclick="filterTasks()">Filter High-Priority Tasks</button>
+    <ul id="taskList">
+        <li>Task 1 (Priority: 2)</li>
+        <li>Task 2 (Priority: 4)</li>
+        <li>Task 3 (Priority: 1)</li>
+        <li>Task 4 (Priority: 5)</li>
+    </ul>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
+
+
+
+main.js:
+
+// Functional Declaration
+function filterHighPriorityTasks(tasks, threshold) {
+    return tasks.filter(function(task) {
+        // Anonymous Function
+        return task.priority > threshold;
+    });
+}
+
+// Arrow Function
+const filterTasks = () => {
+    const threshold = parseInt(document.getElementById("threshold").value);
+    const taskList = document.getElementById("taskList");
+
+    if (!isNaN(threshold)) {
+        const tasks = [
+            { name: "Task 1", priority: 2 },
+            { name: "Task 2", priority: 4 },
+            { name: "Task 3", priority: 1 },
+            { name: "Task 4", priority: 5 }
+        ];
+
+        // Call filterHighPriorityTasks and display the result
+        const highPriorityTasks = filterHighPriorityTasks(tasks, threshold);
+        taskList.innerHTML = "";
+        highPriorityTasks.forEach(function(task) {
+            taskList.innerHTML += `<li>${task.name} (Priority: ${task.priority})</li>`;
+        });
+    } else {
+        alert("Please enter a valid threshold.");
+    }
+};

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <foodItem>
+        <name>Burger</name>
+        <price>$9.99</price>
+        <description>A classic beef burger with lettuce, tomato, and cheese.</description>
+    </foodItem>
+    <foodItem>
+        <name>Pasta Carbonara</name>
+        <price>$12.99</price>
+        <description>Creamy pasta with bacon, eggs, and parmesan cheese.</description>
+    </foodItem>
+    <foodItem>
+        <name>Caesar Salad</name>
+        <price>$7.99</price>
+        <description>Fresh romaine lettuce with croutons, parmesan cheese, and Caesar dressing.</description>
+    </foodItem>
+    <foodItem>
+        <name>Pizza Margherita</name>
+        <price>$11.99</price>
+        <description>Traditional Italian pizza with tomato sauce, mozzarella cheese, and fresh basil.</description>
+    </foodItem>
+    <foodItem>
+        <name>Chicken Tenders</name>
+        <price>$8.99</price>
+        <description>Crispy chicken tenders served with your choice of dipping sauce.</description>
+    </foodItem>
+</menu>

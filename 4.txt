@@ -1,0 +1,72 @@
+XML FILE:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book>
+        <title>Book 1</title>
+        <author>Author 1</author>
+        <publicationYear>2022</publicationYear>
+    </book>
+    <book>
+        <title>Book 2</title>
+        <author>Author 2</author>
+        <publicationYear>2019</publicationYear>
+    </book>
+</library>
+
+
+
+XSL FILE:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+      <fo:layout-master-set>
+        <fo:simple-page-master master-name="A4" page-height="29.7cm" page-width="21cm" margin-top="1cm" margin-bottom="1cm" margin-left="1cm" margin-right="1cm">
+          <fo:region-body margin-top="2cm" margin-bottom="2cm"/>
+        </fo:simple-page-master>
+      </fo:layout-master-set>
+      <fo:page-sequence master-reference="A4">
+        <fo:flow flow-name="xsl-region-body">
+          <fo:block font-size="20pt" text-align="center" font-weight="bold">Book Information</fo:block>
+          <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-column column-width="30%"/>
+            <fo:table-column column-width="30%"/>
+            <fo:table-column column-width="40%"/>
+            <fo:table-body>
+              <fo:table-row>
+                <fo:table-cell>
+                  <fo:block>Book Title</fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Author</fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Publication Year</fo:block>
+                </fo:table-cell>
+              </fo:table-row>
+              <xsl:for-each select="library/book">
+                <fo:table-row>
+                  <fo:table-cell>
+                    <fo:block><xsl:value-of select="title"/></fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block><xsl:value-of select="author"/></fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block><xsl:value-of select="publicationYear"/></fo:block>
+                  </fo:table-cell>
+                </fo:table-row>
+              </xsl:for-each>
+            </fo:table-body>
+          </fo:table>
+        </fo:flow>
+      </fo:page-sequence>
+    </fo:root>
+  </xsl:template>
+</xsl:stylesheet>
+
+
+
+fop -xml books.xml -xsl style.xsl -pdf output.pdf

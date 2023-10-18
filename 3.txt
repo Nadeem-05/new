@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+  <html>
+    <head>
+      <title>Book Information</title>
+    </head>
+    <body>
+      <h1>Book Information</h1>
+      <table border="1">
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Publication Year</th>
+        </tr>
+        <xsl:for-each select="library/book">
+          <tr>
+            <td><xsl:value-of select="title"/></td>
+            <td><xsl:value-of select="author"/></td>
+            <td><xsl:value-of select="publicationYear"/></td>
+          </tr>
+        </xsl:for-each>
+      </table>
+    </body>
+  </html>
+</xsl:template>
+
+</xsl:stylesheet>
+
+
+
+XML DOC:
+
+<library>
+  <book>
+    <title>Book 1</title>
+    <author>Author 1</author>
+    <publicationYear>2022</publicationYear>
+  </book>
+  <book>
+    <title>Book 2</title>
+    <author>Author 2</author>
+    <publicationYear>2019</publicationYear>
+  </book>
+  <!-- Add more book entries here -->
+</library>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Information</title>
+  <script>
+    function transformXML() {
+      var xml = new XMLHttpRequest();
+      var xsl = new XMLHttpRequest();
+
+      xml.open("GET", "books.xml", false);
+      xsl.open("GET", "books.xsl", false);
+
+      xml.send(null);
+      xsl.send(null);
+
+      var xsltProcessor = new XSLTProcessor();
+      xsltProcessor.importStylesheet(xsl.responseXML);
+
+      var resultDocument = xsltProcessor.transformToDocument(xml.responseXML);
+      document.getElementById("output").innerHTML = new XMLSerializer().serializeToString(resultDocument);
+    }
+  </script>
+</head>
+<body>
+  <h1>Book Information</h1>
+  <button onclick="transformXML()">Transform XML</button>
+  <div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+mkdir user-info-app
+cd user-info-app
+npm init -y
+
+npm install mysql
+
+
+make mysql database and tables
+database: user_info
+table: users
+columns: id, username, email
+
+
+
+app.js:
+
+const mysql = require('mysql');
+
+// Create a MySQL connection
+const connection = mysql.createConnection({
+  host: 'localhost', // Your database host
+  user: 'root', // Your database username
+  password: 'password', // Your database password
+  database: 'user_info', // Your database name
+});
+
+// Connect to the database
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the MySQL database');
+});
+
+// Query to retrieve user information
+const query = 'SELECT * FROM users';
+
+// Execute the query
+connection.query(query, (err, results) => {
+  if (err) {
+    console.error('Error executing the query:', err);
+    return;
+  }
+
+  // Process and display the retrieved user information
+  console.log('User Information:');
+  for (const user of results) {
+    console.log(`ID: ${user.id}, Username: ${user.username}, Email: ${user.email}`);
+  }
+
+  // Close the database connection
+  connection.end((err) => {
+    if (err) {
+      console.error('Error closing the database connection:', err);
+    }
+  });
+});
+
+
+
+node app.js
+
