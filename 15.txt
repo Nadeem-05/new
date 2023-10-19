@@ -1,0 +1,23 @@
+from flask import Flask, request, render_template
+
+app = Flask(__name)
+
+# Define a route for the form
+@app.route('/form', methods=['GET', 'POST'])
+def process_form():
+    if request.method == 'POST':
+        # Access form data submitted by the client
+        username = request.form.get('username')
+        email = request.form.get('email')
+        
+        # Do something with the form data (e.g., store it in a database)
+        # For this example, we'll just print the data to the console
+        print(f"Username: {username}, Email: {email}")
+        
+        # You can also redirect to another page after processing the form
+        # return redirect('/thankyou')
+        
+    return render_template('form.html')  # Replace 'form.html' with your HTML template
+
+if __name__ == '__main__':
+    app.run(debug=True)
